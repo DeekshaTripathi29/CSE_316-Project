@@ -65,13 +65,13 @@ int main()
             printf("Enter The  Process ID(INTEGER):");
     		scanf("%d",&processid[i]);
     		printf("\n");
-    		printf("Enter The Number ARRIVAL TIME(INTEGER):");
+    		printf("Enter The ARRIVAL TIME(INTEGER):");
 			scanf("%d",&arrivaltime[i]);
 			printf("\n");
 			printf("Enter The BURST TIME(INTEGER):");
 			scanf("%d",&bursttime[i]);
 			printf("\n");
-			printf("Enter The Number PRIORITY(INTEGER):");
+			printf("Enter The PRIORITY(INTEGER):");
 			scanf("%d",&priority[i]);
 			printf("\n");
 			printf("\n");
@@ -148,18 +148,23 @@ int main()
      {
      
      waiting_time[i]= ((completion_time[i]- arrivaltime[i])-bursttime[i]);
-       if(waiting_time<0)
+       if(waiting_time[i]<0)
+       {
         waiting_time[i]=0;
+       }
  }
 printf("\nProcess Id\tResponse Time\tCompletion Time\tTurnaound Time\t\tWaiting Time");
    for(int i=0;i<n;i++)   //o(n)
-      printf("\n%d \t\t%d\t\t%d\t\t%d\t\t%d\n",processid[i],response[i],completion_time[i],completion_time[i]-arrivaltime[i],waiting_time[i]);
-    float waitingaverage=0;
+      printf("\n%d \t\t%d\t\t%d\t\t%d\t\t\t%d\n",processid[i],response[i],completion_time[i],completion_time[i]-arrivaltime[i],waiting_time[i]);
+    float waitingaverage=0.0,tatavg=0.0;
      for(int i=0;i<n;i++)
      {
          waitingaverage+=completion_time[i]-arrivaltime[i]-bursttime[i];	
+	     tatavg +=completion_time[i] - arrivaltime[i]; 
 	 }
-	 printf("\nWAITING TIME IS : %f\n",waitingaverage/5);
+
+	 printf("\nAVG WAITING TIME IS : %f\n",waitingaverage/n);
+	 printf("\nAVG Turnaround is : %f\n",tatavg/n);
     
     return 0;
 }
